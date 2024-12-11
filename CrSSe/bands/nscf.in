@@ -1,0 +1,36 @@
+&CONTROL
+calculation = 'bands'
+pseudo_dir = '../pseudo/'
+outdir = '../tmp/'
+prefix = 'CrSSe'
+/
+&SYSTEM
+ibrav = 4
+a = 3.185188839
+c = 10
+nat = 3
+ntyp = 3
+nbnd = 30
+occupations = 'smearing'
+smearing = 'gauss'
+degauss = 0.04
+ecutwfc = 40
+/
+&ELECTRONS
+mixing_beta = 0.7
+conv_thr = 1.0D-6
+/
+ATOMIC_SPECIES
+Cr 51.996 cr_pbe_v1.5.uspp.F.UPF
+S  32.066 s_pbe_v1.4.uspp.F.UPF
+Se 78.96  Se_pbe_v1.uspp.F.UPF
+ATOMIC_POSITIONS (crystal)
+Cr   0.0000000000   0.0000000000   0.5000000000
+S    0.3333333333   0.6666666667   0.4217548051
+Se   0.3333333333   0.6666666667   0.5782450789
+K_POINTS (crystal_b)
+4
+gG 40
+K 20
+M 30
+gG 0

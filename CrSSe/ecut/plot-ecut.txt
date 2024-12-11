@@ -1,0 +1,31 @@
+# Імпортуємо необхідні пакети та модулі
+import matplotlib.pyplot as plt
+plt.style.use('../../matplotlib/sci.mplstyle')
+
+import numpy as np
+
+# Відкриваємо та читаємо файл calc-ecut.dat
+ecut, ener = np.loadtxt('calc-ecut.dat', delimiter=' ', unpack=True)
+
+# Створюємо об'єкт фігури
+plt.figure()
+
+# Будуємо графік (розсіювання)
+plt.scatter(ecut, ener, s=150)
+
+# Малюємо пунктирну лінію на рівні 80 Ry
+plt.axhline(ener[14], c='gray', ls='--')
+
+# Додаємо підписи для осей X та Y
+plt.xlabel('Energy cut-off (Ry)')
+plt.ylabel('Total energy (Ry)')
+
+# Встановлюємо межі для осей
+plt.xlim(19, 81)
+plt.ylim(-227.36, -227.11)
+
+# Зберігаємо графік
+plt.savefig('plot-ecut.pdf')
+
+# Відображаємо графік
+plt.show()

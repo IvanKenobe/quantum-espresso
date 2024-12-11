@@ -1,0 +1,24 @@
+# Import the necessary packages and modules
+import matplotlib.pyplot as plt
+plt.style.use('../../matplotlib/sci.mplstyle')
+import numpy as np
+
+# Open and read the file calc -kpoint.dat
+kp, ener = np.loadtxt('calc-kpoint.dat', delimiter=' ', unpack=True)
+
+# Create figure object
+plt.figure()
+# Plot the data , using black color
+plt.scatter(kp, ener , s=150)
+# Plot a dashed line at 14x14x1
+plt.axhline(ener[10], c='gray', ls='--')
+# Set the axis limits
+plt.xlim(0, 200)
+plt.ylim(-227.38103102, -227.33165327)
+# Add the x and y-axis labels
+plt.xlabel('Number of k-points')
+plt.ylabel('Total energy (Ry)')
+# Save the figure
+plt.savefig('plot-kpoint.pdf')
+# Show the figure
+plt.show()

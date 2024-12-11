@@ -1,0 +1,41 @@
+# Імпортуємо необхідні пакети та модулі
+import matplotlib.pyplot as plt
+plt.style.use('../../matplotlib/sci.mplstyle')
+
+# Відкриваємо та читаємо файл calc-smearing.dat
+f = open('calc-smearing.dat', 'r')
+f_smearing = [line for line in f.readlines() if line.strip()]
+f.close()
+nsf = 4 # Кількість функцій зміщення
+nse = 8 # Кількість енергій зміщення
+# Читаємо енергію зміщення (se) та загальну енергію (ener) для кожної функції зміщення
+se = []
+ener = []
+for i in range(nsf):
+    se.append ([])
+    ener.append ([])
+    for j in range(nse):
+        tmp1 = f_smearing[i*nse+j].split()[1]
+        tmp2 = f_smearing[i*nse+j].split()[2]
+        se[i].append(float(tmp1))
+        ener[i].append(float(tmp2))
+
+# Створюємо об'єкт фігури
+plt.figure()
+# Побудова графіків
+plt.plot(se[0], ener[0], 'o-', label='Fermi-Dirac')
+plt.plot(se[1], ener[1], 's-', label='Gaussian')
+plt.plot(se[2], ener[2], 'v-', label='Methfessel-Paxton')
+plt.plot(se[3], ener[3], '^-', label='Marzari-Vanderbilt')
+# Додаємо легенду
+plt.legend(loc='lower left')
+# Додаємо мітки осей
+plt.xlabel('Енергія зміщення (Ry)')
+plt.ylabel('Загальна енергія (Ry)')
+# Встановлюємо межі осей
+plt.xlim(0.0, 0.045)
+plt.ylim(-227.45, -227.35)
+# Зберігаємо фігуру
+plt.savefig('plot-smearing.pdf')
+# Показуємо фігуру
+plt.show()
